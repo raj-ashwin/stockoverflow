@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Market Live</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="cards/cs.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand mx-2" href="#">
+        <img src="images/fotor_2023-3-10_12_22_18.png" alt="Logo" width="30" height="30"
+          class="d-inline-block align-text-top mx-2">
+        Market Live
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="knowmore.html">Stocks</a>
+          </li>
+        </ul>
+        <div class="form-check form-switch text-dark">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+        </div>
+        <button type="button" class="btn btn-primary">Login/SignUp</button>
+      </div>
+    </div>
+  </nav>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-6 titl">
+        <div class="headr">
+          <h1 class="align"> Invest In Stocks</h1>
+          <p class="mt-1">Trusted by Millions of Indians. Start investing today.</p>
+          <button type="submit" class="btn btn-primary getbtn mt-3">Get started</button>
+
+        </div>
+        <div class="card-containers">
+          <div class="cards">
+            <img src="cards/stck.jpg" alt="Logo">
+            <h1>Stocks</h1>
+          </div>
+          <div class="cards mf">
+            <img src="cards/mf.svg" alt="Logo">
+            <h1>Mutual Funds</h1>
+          </div>
+          <div class="cards">
+            <img src="cards/tr.svg" alt="Logo">
+            <h1>F & O</h1>
+          </div>
+          <div class="cards">
+            <img src="cards/ipo.jpg" alt="Logo">
+            <h1>IPO</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 data">
+        <form action="/" id="form" method="post" onsubmit="sConsole(event)">
+          <div class="card">
+            <div class="search">
+              <input type="text" class="search-bar" name="companyName" id="companyName"
+              placeholder="What are you looking for today?" autocomplete="off" spellcheck="false" />
+              <button class="sb" type="submit">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1.5em"
+                  width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                    clip-rule="evenodd"></path>
+                  <path fill-rule="evenodd"
+                    d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </button>
+             
+            </div>
+            <!-- <div class="stock"> -->
+              <!-- <h1>Company name: <span id="compName"></span></h1> -->
+              <!-- <h1>Current price: <span id="currPrice"></span></h1> -->
+              <!-- <h2>Previous open: <span id="popen"></span></h2>
+                      <h2>Previous close: <span id="pclose"></span></h2>
+                      <h2>High: <span id="high"></span></h2>
+                      <h2>Low: <span id="low"></span></h2>
+                      <h2>52 week heigh: <span id="fthigh"></span></h2>
+                      <h2>52 week low: <span id="ftlow"></span></h2> -->
+            <!-- </div> -->
+          </div>
+        </form>
+        <div class="stock">
+          <table class="stockt">
+            <tr>
+              <td><a style="text-decoration: none;" href="#"><h1 class="stockh1"><span id="compName"></span></h1></a></td>
+            </tr>
+            <tr>
+             <td> <h1 class="stockh2"><span id="currPrice"></span></h1></td>
+            </tr>
+          </table>
+          
+          
+          <!-- <h2>Previous open: <span id="popen"></span></h2>
+          <h2>Previous close: <span id="pclose"></span></h2>
+          <h2>High: <span id="high"></span></h2>
+          <h2>Low: <span id="low"></span></h2>
+          <h2>52 week heigh: <span id="fthigh"></span></h2>
+          <h2>52 week low: <span id="ftlow"></span></h2> -->
+      </div>
+      </div>
+    </div>
+   
+  </div>
+  </div>
+</body>
+<script>
+
+  function sConsole(event) {
+      event.preventDefault();
+      var data = document.getElementById("companyName");
+      var sdata = JSON.stringify(data.value);
+      console.log(sdata);
+      var count = 0;
+
+     
+
+          fetch("/api/data", {
+              method: "post",
+              headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+              },
+
+              body: JSON.stringify({ companyName: sdata }),
+          })
+              .then((response) => response.json())
+              .then((response) => {
+                  if (response.statusCode === 200) {
+                      document.getElementById("compName").textContent =
+                          response.compName;
+                      document.getElementById("currPrice").textContent =
+                          response.currPrice;
+                      // document.getElementById("popen").textContent = response.popen;
+                      // document.getElementById("pclose").textContent = response.pclose;
+                      // document.getElementById("high").textContent = response.thigh;
+                      // document.getElementById("low").textContent = response.tlow;
+                      // document.getElementById("fthigh").textContent = response.fhigh;
+                      // document.getElementById("ftlow").textContent = response.flow;
+
+                      if (response.statusCode === 200) {
+                          // code for enter
+                              if (count == 0) {
+                                  var speech =
+                                      response.compName + " current price is " + response.currPrice;
+                                  var utter = new window.SpeechSynthesisUtterance(speech);
+                                  window.speechSynthesis.speak(utter);
+                                  count = count + 1;
+                              }
+                              else {
+                                  var speech = response.currPrice;
+                                  var utter = new window.SpeechSynthesisUtterance(speech);
+                                  window.speechSynthesis.speak(utter);
+                              }
+                      }
+                      console.log(response);
+                  } else {
+                      document.getElementById("compName").textContent = "Not found";
+                      document.getElementById("currPrice").textContent = "Not found";
+                      // document.getElementById("popen").textContent = "Not found";
+                      // document.getElementById("pclose").textContent = "Not found";
+                      // document.getElementById("high").textContent = "Not found";
+                      // document.getElementById("low").textContent = "Not found";
+                      // document.getElementById("fthigh").textContent = "Not found";
+                      // document.getElementById("ftlow").textContent = "Not found";
+                      console.log(response);
+                  }
+
+              });
+     
+  }
+</script>
+
+</html>

@@ -1,0 +1,138 @@
+*{
+margin: 0;
+padding: 0px;
+box-sizing: border-box;
+}
+.logo{
+    border-radius: 100%;
+}
+img{
+    margin-right:0px ;
+    float:left;
+}
+.logotext h3{
+    margin-bottom:0px;
+    
+}
+.logotext p{
+    margin-bottom: 0px;
+    font-size: small;
+}
+
+.align{
+    display: inline-block;
+    /* margin-left: 10px; */
+    margin-top: 80px;
+    font-size: 50px;
+}
+
+body{
+    padding: 0 15px;
+}
+
+
+.card {
+    /* background: #F0EEED; */
+    padding: 0.5em 0.5em;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 420px;
+    /* margin: 1em; */
+    color: #332C39;
+    /* padding: 0 auto; */
+    margin:auto;
+    
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    
+}
+
+.sb{
+    margin: .5em;
+    border-radius: 50%;
+    border: none;
+    height: 44px;
+    width: 44px;
+    outline: none;
+    background: #7c7c7c2b;
+    transition: 0.2s ease-in-out;
+}
+
+input#companyName{
+    border: none;
+    outline: none;
+    padding: 0.4em 1em;
+    border-radius: 20px;
+    background: #7c7c7c2a;
+    color: black;
+    font-family: inherit;
+    font-size: 105%;
+    width: calc(75%);
+}
+button:hover {
+    background: #7c7c7c6b;
+    cursor: pointer;
+}
+
+.temp{
+ margin: 0;   
+}
+h1,h2{
+    font-size:105%;
+}
+.header{
+   text-align: center;
+   font-size: 2rem;
+}
+
+.data{
+    display:flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
+    margin:150px auto;
+}
+    
+.titl{
+    text-align: left;
+}
+
+.icon{
+    height: 80px;
+    width: 80%;
+}
+.cardbtn{
+  height: 120px;
+  width: 120px;
+  margin-top: 35px;
+  display: inline-block;
+  border: 2px solid black;
+  text-align: center;
+  border-radius: 30%;
+  justify-content: left;
+}
+
+.getbtn{
+display:block;
+
+}
+
+.cardimg{
+    display: inline-block;
+}
+.stockt{
+    margin-top: 23px;
+    width: 100%;
+}
+.stockh1{
+    display:inline-block;
+font-size: 2em;
+}
+.stockh2{
+    font-size: 1.3em;
+    }

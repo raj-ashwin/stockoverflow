@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/app/data" method="post" id="form">
+     <!-- <button id="companyName" name="btncomp">ITC.NS</button>   -->
+     <!-- <input type="text"> -->
+     <!-- <input type="submit" id="newItem" value="reliance" onsubmit="onc(event)" /> -->
+     <a type="submit" id="newItem" value="reliance" onclick="onc(event)" href="#">reliance</a>
+    </form>
+<script>
+    function onc(event)
+    {
+            // event.preventDefault();
+            var data = document.getElementById("newItem");
+            var sdata = JSON.stringify(data.innerHTML);
+            console.log(sdata);
+            fetch("/app/data",{
+                method:"post",
+                headers:{Accept: 'application/json',
+               'Content-Type': 'application/json',
+},
+            body: JSON.stringify({newItem:data.innerHTML}),
+            })
+    }
+
+</script>
+</body>
+</html>
