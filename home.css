@@ -1,6 +1,6 @@
 *{
 margin: 0;
-padding: 0px;
+padding: 0;
 box-sizing: border-box;
 }
 .logo{
@@ -27,9 +27,8 @@ img{
 }
 
 body{
-    padding: 0 15px;
+    padding: 0 0px;
 }
-
 
 .card {
     /* background: #F0EEED; */
@@ -136,3 +135,9 @@ font-size: 2em;
 .stockh2{
     font-size: 1.3em;
     }
+.headr{
+    margin-left: 23px;
+}
+.butto{
+    margin-top:25px;
+}

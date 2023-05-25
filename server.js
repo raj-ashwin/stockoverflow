@@ -1,13 +1,15 @@
 const http = require("https");
 const express = require("express");
-const { request } = require("http");
+// const { request } = require("http");
 const app = express();
 const bodyParser = require("body-parser");
 let ejs =require("ejs");
+
 app.set("view engine","ejs");
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
+
 let companyName = "ITC.NS";
 app.get("/", (request, response) => {
   response.sendFile(__dirname+"/home.html");
@@ -79,8 +81,7 @@ app.post("/api/data", (requ, resp) => {
         resp.json("{statusCode:404}");
       }
     });
-  });
-
+  })
   request.end();
 });
 app.get("/app/data",(req,res)=>{
@@ -92,7 +93,7 @@ res.sendFile(__dirname+"/temp.html");
 app.post("/app/data",(reque,respo)=>{
   // if(reque.body.newItem)
   // {
-  console.log(reque.body.newItem);
+ console.log(reque.body.newItem);
  var listName = reque.body.newItem+".ns";
   const options = {
     method: "GET",

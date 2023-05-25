@@ -25,10 +25,10 @@
             <a class="nav-link" href="knowmore.html">Stocks</a>
           </li>
         </ul>
-        <div class="form-check form-switch text-dark">
+        <!-- <div class="form-check form-switch text-dark">
           <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-        </div>
-        <button type="button" class="btn btn-primary">Login/SignUp</button>
+        </div> -->
+        <button type="button" class="btn btn-primary" style="margin-right: 10px;">Login/SignUp</button>
       </div>
     </div>
   </nav>
@@ -97,10 +97,11 @@
               <td><a style="text-decoration: none;" href="#"><h1 class="stockh1"><span id="compName"></span></h1></a></td>
             </tr>
             <tr>
-             <td> <h1 class="stockh2"><span id="currPrice"></span></h1></td>
+             <td><h1 class="stockh2"><span id="currPrice"></span></h1></td>
             </tr>
           </table>
-          
+          <div id="butt" class="butto">
+          </div>
           
           <!-- <h2>Previous open: <span id="popen"></span></h2>
           <h2>Previous close: <span id="pclose"></span></h2>
@@ -114,6 +115,31 @@
    
   </div>
   </div>
+  <!-- //modal content -->
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h4> Live_Price:  <span id="curPrice"></span></h4>
+            <h4>Prv.Open: <span id="prv-open"></span></h4>
+            <h4>Prv.Close: <span id="prv-close"></span></h4>
+            <!-- <h4>pclose: ₹ <span id="currPrice"></span></h4> -->
+            <h4>High: <span id="high"></span></h4>
+            <h4>Low: <span id="low"></span></h4>
+            <!-- <h4>fhigh: ₹ fthigh</h4>
+            <h4>flow: ₹ ftlow</h4> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal close -->
 </body>
 <script>
 
@@ -142,6 +168,32 @@
                           response.compName;
                       document.getElementById("currPrice").textContent =
                           response.currPrice;
+                          // all for adding button to list 
+                        var myDiv = document.getElementById("butt");
+                        var button = document.createElement("button")
+                        button.textContent = "Know More";
+                        button.classList.add("btn")
+                        button.classList.add("btn-primary")
+                        button.type="button"
+
+                        button.setAttribute("data-bs-toggle", "modal");
+                        button.setAttribute("data-bs-target", "#myModal");
+                        myDiv.appendChild(button)
+
+
+                        //for modal props
+                        var stName= document.getElementById("exampleModalLabel");
+                        stName.innerHTML =response.compName;
+                        document.getElementById("curPrice").textContent =
+                          response.currPrice;
+                        document.getElementById("prv-open").textContent =
+                          response.popen;
+                          document.getElementById("prv-close").textContent =
+                          response.pclose;
+                          document.getElementById("high").textContent =
+                          response.thigh;
+                          document.getElementById("low").textContent =
+                          response.tlow;
                       // document.getElementById("popen").textContent = response.popen;
                       // document.getElementById("pclose").textContent = response.pclose;
                       // document.getElementById("high").textContent = response.thigh;
@@ -180,6 +232,10 @@
               });
      
   }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
 </script>
 
 </html>
