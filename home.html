@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="cards/cs.css">
+  <link rel="shortcut icon" href="images/fotor_2023-3-10_12_22_18.png" type="image/x-icon">
 </head>
 
 <body>
@@ -14,7 +15,7 @@
       <a class="navbar-brand mx-2" href="#">
         <img src="images/fotor_2023-3-10_12_22_18.png" alt="Logo" width="30" height="30"
           class="d-inline-block align-text-top mx-2">
-        Market Live
+        Stock-Overflow
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -38,8 +39,29 @@
         <div class="headr">
           <h1 class="align"> Invest In Stocks</h1>
           <p class="mt-1">Trusted by Millions of Indians. Start investing today.</p>
-          <button type="submit" class="btn btn-primary getbtn mt-3">Get started</button>
-
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
+            Get Started
+          </button>
+          <div class="modal fade" id="myModal1" tabindex="-1" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Get Started in few steps</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body strt">
+                  <li>Search the <b>Stock</b> in searchbar</li>
+                  <li>A voice alert message pops up indicating current price of stock</li>
+                  <li>Click on <b>Know More</b> to know more details of stock</li>
+                  <li>Sign-in to know more details on stock</li>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Sign-in Now</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card-containers">
           <div class="cards">
@@ -140,9 +162,17 @@
     </div>
   </div>
   <!-- Modal close -->
+  <!-- <h2 style="text-align: center;
+  font-size: 3rem; margin-top:20px;">Features </h2>
+<div class="features-card">
+  
+       
+    </div> -->
+</div>
+</div>
 </body>
 <script>
-
+var executed=false;
   function sConsole(event) {
       event.preventDefault();
       var data = document.getElementById("companyName");
@@ -163,6 +193,7 @@
           })
               .then((response) => response.json())
               .then((response) => {
+                
                   if (response.statusCode === 200) {
                       document.getElementById("compName").textContent =
                           response.compName;
@@ -178,9 +209,12 @@
 
                         button.setAttribute("data-bs-toggle", "modal");
                         button.setAttribute("data-bs-target", "#myModal");
-                        myDiv.appendChild(button)
-
-
+                        
+                        if(!executed){
+                          myDiv.appendChild(button)
+                          executed=true;
+                        }
+          
                         //for modal props
                         var stName= document.getElementById("exampleModalLabel");
                         stName.innerHTML =response.compName;
@@ -228,9 +262,7 @@
                       // document.getElementById("ftlow").textContent = "Not found";
                       console.log(response);
                   }
-
               });
-     
   }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
